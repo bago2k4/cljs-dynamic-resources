@@ -1,10 +1,10 @@
 # cljs-dynamic-deps
 
-Dynamically add and load script and style tags to you page
+Dynamically load JavaScript and CSS resources from your ClojureScript code.
 
 ## Overview
 
-*cljs-dynamic-deps* helps you load javascript and css on demand. It's very easy and light weight, it uses (Prysmatic/dommy)[https://github.com/Prismatic/dommy] for dom manipulation.
+*cljs-dynamic-deps* helps you load JavaScript and CSS on demand. It's very easy and light weight, it uses [Prysmatic/dommy](https://github.com/Prismatic/dommy) for dom manipulation.
 
 It's as easy as this:
 
