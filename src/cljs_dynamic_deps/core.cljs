@@ -9,7 +9,7 @@
    :type "text/javascript"})
 
 ; <script src="src" type=":type" onload="cb"></script>
-(defn add-script 
+(defn add-script!
   "Append a script element"
   ([src cb opts]
     (println "Inside add-script yeah!!! ahahahha")
@@ -27,16 +27,16 @@
           ; append the newly created element to the parent node
           (append! parent-node))))
   ([src cb]
-   (add-script src cb script-default-opts))
+   (add-script! src cb script-default-opts))
   ([src]
-   (add-script src #())))
+   (add-script! src #())))
 
 (def ^:private style-default-opts
   {:container-sel :head
    :rel "stylesheet"})
 
 ; <style href="link-to-style" rel=":rel" onload="cb"></script>
-(defn add-style 
+(defn add-style!
   "Append a style element"
   ([src cb opts]
     (when (not (nil? src))
@@ -55,6 +55,6 @@
             ; append the newly created element to the parent node
             (append! parent-node)))))
   ([src cb]
-   (add-style src cb style-default-opts))
+   (add-style! src cb style-default-opts))
   ([src]
-   (add-style src nil)))
+   (add-style! src nil)))
