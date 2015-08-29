@@ -10,20 +10,28 @@ It's as easy as this:
 
 ```clojure
 (require '[cljs-dynamic-deps.core :as cdd])
-(cdd/add-script! "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js")
-(cdd/add-style! "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css")
+(cdd/add-script!
+    "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js")
+(cdd/add-style!
+    "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css")
 ```
 
 If you need advanced options:
 
 ```clojure
-(cdd/add-script! "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" (fn [e] (println "Script loaded")))
+(cdd/add-script!
+    "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+    (fn [e] (println "Script loaded")))
 ```
 
 and also:
 
 ```clojure
-(cdd/add-script! "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" (fn [e] (println "Script loaded")) {:type "text/my-custom-type" :container-sel :div#my-container-div})
+(cdd/add-script!
+    "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+    (fn [e] (println "Script loaded"))
+    {:type "text/my-custom-type"
+     :container-sel :div#my-container-div})
 ```
 
 ## Test
