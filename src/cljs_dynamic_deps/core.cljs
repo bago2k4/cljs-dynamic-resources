@@ -47,7 +47,7 @@
         (-> ; create a script element
             (dommy/create-element :style)
             ; set the rel attribute
-            (dommy/set-attr! :rel (:type opts))
+            (dommy/set-attr! :rel (:rel opts))
             ; set the href attribute
             (dommy/set-attr! :href src)
             ; attach the on load event
@@ -55,6 +55,6 @@
             ; append the newly created element to the parent node
             (append! parent-node)))))
   ([src cb]
-   (add-style src cb script-default-opts))
+   (add-style src cb style-default-opts))
   ([src]
    (add-style src nil)))
