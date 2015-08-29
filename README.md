@@ -4,7 +4,7 @@ Dynamically add and load script and style tags to you page
 
 ## Overview
 
-*cljs-dynamic-deps* helps you load javascript and css source files on demand. It's very easy and light weight, it uses (Prysmatic/dommy)[https://github.com/Prismatic/dommy] for dom manipulation.
+*cljs-dynamic-deps* helps you load javascript and css on demand. It's very easy and light weight, it uses (Prysmatic/dommy)[https://github.com/Prismatic/dommy] for dom manipulation.
 
 It's as easy as this:
 
