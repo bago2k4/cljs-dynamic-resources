@@ -1,53 +1,34 @@
 # cljs-dynamic-deps
 
-FIXME: Write a one-line description of your library/project.
+Dynamically add and load script and style tags to you page
 
 ## Overview
 
-FIXME: Write a paragraph about the library/project and highlight its goals.
+*cljs-dynamic-deps* helps you load javascript and css source files on demand. It's very easy and light weight, it uses (Prysmatic/dommy)[https://github.com/Prismatic/dommy] for dom manipulation.
 
-## Setup
+It's as easy as this:
 
-Build your project once in dev mode with the following script and then open `index.html` in your browser.
-
-    ./scripts/build
-
-To auto build your project in dev mode:
-
-    ./script/watch
-
-To start an auto-building Node REPL (requires
-[rlwrap](http://utopia.knoware.nl/~hlub/uck/rlwrap/), on OS X
-installable via brew):
-
-    ./scripts/repl
-
-To get source map support in the Node REPL:
-
-    lein npm install
-    
-To start a browser REPL:
-    
-1. Uncomment the following lines in src/cljs_dynamic_deps/core.cljs:
 ```clojure
-;; (defonce conn
-;;   (repl/connect "http://localhost:9000/repl"))
+(require '[cljs-dynamic-deps.core :as cdd])
+(cdd/add-script! "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js")
+(cdd/add-style! "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css")
 ```
-2. Run `./scripts/brepl`
-3. Browse to `http://localhost:9000` (you should see `Hello world!` in the web console)
-4. (back to step 3) you should now see the REPL prompt: `cljs.user=>`
-5. You may now evaluate ClojureScript statements in the browser context.
-    
-For more info using the browser as a REPL environment, see
-[this](https://github.com/clojure/clojurescript/wiki/The-REPL-and-Evaluation-Environments#browser-as-evaluation-environment).
-    
-Clean project specific out:
 
-    lein clean
-     
-Build a single release artifact with the following script and then open `index_release.html` in your browser.
+If you need advanced options:
 
-    ./scripts/release
+```clojure
+(cdd/add-script! "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" (fn [e] (println "Script loaded")))
+```
+
+and also:
+
+```clojure
+(cdd/add-script! "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" (fn [e] (println "Script loaded")) {:type "text/my-custom-type" :container-sel :div#my-container-div})
+```
+
+## Test
+
+TBD
 
 ## License
 
