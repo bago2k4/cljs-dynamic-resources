@@ -2,8 +2,6 @@
   (:require [cljs-dynamic-deps.utils :refer [append!]]
             [dommy.core :as dommy :refer-macros [sel sel1]]))
 
-(enable-console-print!)
-
 (def ^:private script-default-opts
   {:container-sel :body
    :type "text/javascript"})
@@ -12,10 +10,8 @@
 (defn add-script!
   "Append a script element"
   ([src cb opts]
-    (println "Inside add-script yeah!!! ahahahha")
     (let [opts (merge opts script-default-opts) ; normalize the options map
           parent-node (sel1 (:container-sel opts))] ; get the container node
-      (println "Parent element: " parent-node)
       (-> ; create a script element
           (dommy/create-element :script)
           ; set the type attribute
@@ -40,10 +36,8 @@
   "Append a style element"
   ([src cb opts]
     (when (not (nil? src))
-      (println "Inside add-style yeah!!!")
       (let [opts (merge opts style-default-opts)
             parent-node (sel1 (:container-sel opts))]
-        (println "Parent element: " parent-node)
         (-> ; create a script element
             (dommy/create-element :style)
             ; set the rel attribute
