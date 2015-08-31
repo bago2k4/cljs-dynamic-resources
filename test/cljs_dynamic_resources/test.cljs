@@ -13,4 +13,4 @@
   (testing "add-style test"
     (let [style (cdr/add-style! "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css")]
       (set! (.-id style) "test-style-id")
-      (is (not (nil? (sel1 js/document [:style#test-style-id])))))))
+      (is (not (nil? (sel1 js/document [:link#test-style-id])))))))
