@@ -1,6 +1,6 @@
-(defproject bago2k4/cljs-dynamic-deps "0.0.1"
+(defproject bago2k4/cljs-dynamic-resources "0.0.1"
   :description "Dynamic load javascript and style"
-  :url "https://github.com/bago2k4/cljs-dynamic-deps"
+  :url "https://github.com/bago2k4/cljs-dynamic-resources"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
@@ -10,20 +10,21 @@
     [prismatic/dommy "1.1.0"] ; DOM manipulation and event library https://github.com/Prismatic/dommy
   ]
 
-  :profiles {
-    :dev {
-      :plugins [
-        [lein-cljsbuild "1.0.5"]
-        [com.cemerick/clojurescript.test "0.3.3"]]
+  :plugins [
+    [lein-cljsbuild "1.0.5"] ; ClojureScript compiler https://github.com/emezeske/lein-cljsbuild
+    [lein-doo "0.1.4"] ; A plugin to run tests in many JS environments https://github.com/bensu/doo]
+  ]
 
-      :cljsbuild {
-        :test-commands {
-          "unit" ["phantomjs" :runner "target/unit-test.js"]}
-        :builds {
-          :test {
-            :source-paths ["src" "test"]
-            :compiler {
-              :output-to "target/unit-test.js"
-              :optimizations :whitespace
-              :pretty-print true}}}}}})
+  :cljsbuild {
+    :builds {
+      :test {
+        :id "test"
+        :source-paths ["src" "test"]
+        :compiler {
+          :main "test.test"
+          :output-to "target/unit-test.js"
+          :optimizations :none
+          :pretty-print true}}}}
 
+  :aliases {
+    "test!" ["doo" "phantom" "test" "once"]})
