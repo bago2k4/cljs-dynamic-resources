@@ -1,16 +1,16 @@
-# cljs-dynamic-deps
+# cljs-dynamic-resources
 [![Build Status](https://travis-ci.org/bago2k4/cljs-dynamic-resources.svg?branch=master)](https://travis-ci.org/bago2k4/cljs-dynamic-resources)
 
 Dynamically load JavaScript and CSS resources from your ClojureScript code.
 
 ## Overview
 
-*cljs-dynamic-deps* helps you load JavaScript and CSS on demand. It's very easy and light weight, it uses [Prysmatic/dommy](https://github.com/Prismatic/dommy) for dom manipulation.
+*cljs-dynamic-resources* helps you load JavaScript and CSS on demand. It's very easy and light weight, it uses [Prysmatic/dommy](https://github.com/Prismatic/dommy) for dom manipulation.
 
 It's as easy as this:
 
 ```clojure
-(require '[cljs-dynamic-deps.core :as cdd])
+(require '[cljs-dynamic-resources.core :as cdd])
 (cdd/add-script!
     "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js")
 (cdd/add-style!
