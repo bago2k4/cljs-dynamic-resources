@@ -1,7 +1,6 @@
 (ns cljs-dynamic-resources.core
   (:require [cljs-dynamic-resources.utils :refer [append!]]
             [dommy.core :as dommy :refer-macros [sel sel1]]))
-
 (def ^:private script-default-opts
   {:parent-sel :body
    :type "text/javascript"})
@@ -23,9 +22,9 @@
           ; append the newly created element to the parent node
           (append! parent-node))))
   ([src cb]
-   (add-script! src cb script-default-opts))
+   (add-script! src cb nil))
   ([src]
-   (add-script! src #())))
+   (add-script! src nil)))
 
 (def ^:private style-default-opts
   {:parent-sel :head
@@ -55,3 +54,25 @@
    (add-style! src cb style-default-opts))
   ([src]
    (add-style! src nil)))
+
+; Example usage
+; (add-scripts!
+; [ {:src "/script1.js" :cb #(callback/script1) :opts opts}
+;   {:src "/script2.js" :cb #(callback/script2)}
+;   {:src "/script3.js"}]
+;  #(global-callback))
+(defn add-scripts!
+  "Load a list of scripts taking care of the order"
+  ([scripts global-cb]
+    (if (> (count scripts) 0)
+      (let [{:keys [src cb opts] :as script} (first scripts)
+            remain-scripts (subvec scripts 1)]
+        (add-script! src
+                     (fn [_]
+                       (when (not (nil? cb)) (cb))
+                       (real-add-scripts! remain-scripts global-cb))
+                     opts))
+      (when (not (nil? global-cb))
+        (global-cb))))
+  ([scripts]
+   (add-scripts! scripts nil)))
