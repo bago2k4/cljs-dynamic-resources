@@ -29,7 +29,8 @@
 
 (def ^:private style-default-opts
   {:parent-sel :head
-   :rel "stylesheet"})
+   :rel "stylesheet"
+   :type "text/css"})
 
 ; <style href="link-to-style" rel=":rel" onload="cb"></script>
 (defn add-style!
@@ -39,9 +40,11 @@
       (let [opts (merge opts style-default-opts)
             parent-node (sel1 (:parent-sel opts))]
         (-> ; create a script element
-            (dommy/create-element :style)
+            (dommy/create-element :link)
             ; set the rel attribute
             (dommy/set-attr! :rel (:rel opts))
+            ; set the type attribute
+            (dommy/set-attr! :type (:type opts))
             ; set the href attribute
             (dommy/set-attr! :href src)
             ; attach the on load event
