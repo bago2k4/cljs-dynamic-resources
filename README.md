@@ -1,5 +1,6 @@
 # cljs-dynamic-resources
 [![Build Status](https://travis-ci.org/bago2k4/cljs-dynamic-resources.svg?branch=master)](https://travis-ci.org/bago2k4/cljs-dynamic-resources)
+[![Clojars Project](http://clojars.org/org.clojure.bago/cljs-dynamic-resources/latest-version.svg)](http://clojars.org/org.clojure.bago/cljs-dynamic-resources)
 
 Dynamically load JavaScript and CSS resources.
 
