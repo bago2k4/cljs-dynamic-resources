@@ -1,5 +1,5 @@
 # cljs-dynamic-deps
-[![Build Status](https://travis-ci.org/bago2k4/cljs-dynamic-resources.svg?branch=master)]
+[Build Status](https://travis-ci.org/bago2k4/cljs-dynamic-resources.svg?branch=master)
 
 Dynamically load JavaScript and CSS resources from your ClojureScript code.
 
