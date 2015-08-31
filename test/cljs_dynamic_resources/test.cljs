@@ -14,3 +14,12 @@
     (let [style (cdr/add-style! "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css")]
       (set! (.-id style) "test-style-id")
       (is (not (nil? (sel1 js/document [:link#test-style-id])))))))
+
+(def test-obj [{:src "//code.jquery.com/jquery-2.1.4.js"}
+               {:src "//code.jquery.com/jquery-1.11.3.js"}
+               {:src "//code.jquery.com/jquery-migrate-1.2.1.js"}])
+
+(deftest add-scripts-test
+  (testing "add-scripts test"
+    (cdr/add-scripts! test-obj)
+    (is true)))
