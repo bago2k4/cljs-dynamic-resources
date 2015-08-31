@@ -1,5 +1,5 @@
-(ns cljs-dynamic-deps.core
-  (:require [cljs-dynamic-deps.utils :refer [append!]]
+(ns cljs-dynamic-resources.core
+  (:require [cljs-dynamic-resources.utils :refer [append!]]
             [dommy.core :as dommy :refer-macros [sel sel1]]))
 
 (def ^:private script-default-opts
