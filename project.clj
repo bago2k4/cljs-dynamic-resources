@@ -1,4 +1,4 @@
-(defproject org.clojure.bago/cljs-dynamic-resources "0.0.1"
+(defproject org.clojure.bago/cljs-dynamic-resources "0.0.2"
   :description "Dynamic load javascript and style"
   :url "https://github.com/bago2k4/cljs-dynamic-resources"
   :license {:name "Eclipse Public License"
