@@ -3,7 +3,7 @@
             [dommy.core :as dommy :refer-macros [sel sel1]]))
 
 (def ^:private script-default-opts
-  {:container-sel :body
+  {:parent-sel :body
    :type "text/javascript"})
 
 ; <script src="src" type=":type" onload="cb"></script>
@@ -11,7 +11,7 @@
   "Append a script element"
   ([src cb opts]
     (let [opts (merge opts script-default-opts) ; normalize the options map
-          parent-node (sel1 (:container-sel opts))] ; get the container node
+          parent-node (sel1 (:parent-sel opts))] ; get the container node
       (-> ; create a script element
           (dommy/create-element :script)
           ; set the type attribute
@@ -28,7 +28,7 @@
    (add-script! src #())))
 
 (def ^:private style-default-opts
-  {:container-sel :head
+  {:parent-sel :head
    :rel "stylesheet"})
 
 ; <style href="link-to-style" rel=":rel" onload="cb"></script>
@@ -37,7 +37,7 @@
   ([src cb opts]
     (when (not (nil? src))
       (let [opts (merge opts style-default-opts)
-            parent-node (sel1 (:container-sel opts))]
+            parent-node (sel1 (:parent-sel opts))]
         (-> ; create a script element
             (dommy/create-element :style)
             ; set the rel attribute
