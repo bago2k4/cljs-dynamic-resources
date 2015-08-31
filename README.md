@@ -30,7 +30,7 @@ For example when your web app navigate to the form that needs the calendar widge
 Also you can pass a callback for the `onload` event:
 
 ```clojure
-(cdd/add-script!
+(cdr/add-script!
     "/widget/calendar/cal.js"
     (fn [e] (println "cal.js loaded")))
 ```
@@ -38,7 +38,7 @@ Also you can pass a callback for the `onload` event:
 and also you can customize the `type` (or the `ref` if it's a style inclusion) and the parent node:
 
 ```clojure
-(cdd/add-script!
+(cdr/add-script!
     "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
     (fn [e] (println "Script loaded"))
     {:type "text/my-custom-js" ; or :ref "text/my-custom-css"
@@ -46,6 +46,18 @@ and also you can customize the `type` (or the `ref` if it's a style inclusion) a
 ```
 
 NB: `:parent-sel` should be a dommy selector, for more info refer [here](https://github.com/Prismatic/dommy)
+
+## Multiple synchronous loading
+
+Sometimes JavaScript libraries require each other to be preloaded, to avoid these you can use `add-scripts!` passing in a list of scripts that will be loaded in the given order and synchronously:
+
+```clojure
+(def scripts [{:src "//code.jquery.com/jquery-2.1.4.js" :cb (println "jquery-2.1.4.js loaded") :opts {:parent-sel :div.scripts-container}}
+               {:src "//code.jquery.com/ui/1.11.3/jquery-ui.js" :opts {:parent-sel :div.scripts-container}}
+               {:src "/lib/hallo/hallo.js"}])
+
+(cdr/add-scripts! scripts #(println "Ready to go!"))
+```
 
 ## Test
 
