@@ -64,15 +64,14 @@
 (defn add-scripts!
   "Load a list of scripts taking care of the order"
   ([scripts global-cb]
-    (if (> (count scripts) 0)
-      (let [{:keys [src cb opts] :as script} (first scripts)
-            remain-scripts (subvec scripts 1)]
-        (add-script! src
-                     (fn [_]
-                       (when (not (nil? cb)) (cb))
-                       (real-add-scripts! remain-scripts global-cb))
-                     opts))
-      (when (not (nil? global-cb))
-        (global-cb))))
+    (let [{:keys [src cb opts] :as script} (first scripts)
+          remain-scripts (subvec scripts 1)]
+      (add-script! src
+                   (fn [_]
+                     (when (not (nil? cb)) (cb))
+                     (if (> (count remain-scripts) 0)
+                       (add-scripts! remain-scripts global-cb)
+                       (when (not (nil? global-cb)) (global-cb))))
+                   opts)))
   ([scripts]
    (add-scripts! scripts nil)))
