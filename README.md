@@ -49,7 +49,7 @@ NB: `:parent-sel` should be a dommy selector, for more info refer [here](https:/
 
 ## Multiple synchronous loading
 
-Sometimes JavaScript libraries require each other to be preloaded, to avoid these you can use `add-scripts!` passing in a list of scripts that will be loaded in the given order and synchronously:
+Sometimes JavaScript libraries require each other to be preloaded, to solve this you can use `add-scripts!` passing in a list of scripts that will be loaded in the given order and synchronously:
 
 ```clojure
 (def scripts [{:src "//code.jquery.com/jquery-2.1.4.js" :cb (println "jquery-2.1.4.js loaded") :opts {:parent-sel :div.scripts-container}}
